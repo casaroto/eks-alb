@@ -1,7 +1,9 @@
 
 
 #Crie o cluster EKS seguindo o template: Deploy Amazon EKS into a new VPC
+
 #arquivo amazon-eks-entrypoint-new-vpc.template.yaml
+
 #doc: https://aws-quickstart.github.io/quickstart-amazon-eks/#_launch_the_quick_start
 
 #utilize este exemplo para subir um service com as anootations exemplo
