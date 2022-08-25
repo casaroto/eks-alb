@@ -9,24 +9,27 @@
 #para primeiro testar direto sem api Gateway
 #depois utilize alb.ingress.kubernetes.io/scheme: internal
 #assim deixará só disponível depois via api Gateway
+
 kubectl apply -f nginx-deploy.yaml
 
 #esta doc explica o que deve ter no exemplo de app com gateway
 #https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html
 
-
 #passos simplificados para criação do gateway
+
 aws apigatewayv2 create-api \
     --name my-http-api \
     --protocol-type HTTP
 
 #Pegue no cluster eks as subnets utilzadas e os security groups
+
 aws apigatewayv2 create-vpc-link --name MyVpcLink \
     --subnet-ids subnet-066256ae0ff57e3b7 subnet-04514d7db761fcfcc \
     --security-group-ids sg-07282bfd4eea405d6 sg-0adc0c3e2baf61704
 
 #pegue o id da http api criada e coloque em --api-id 
 #pegue o id vpc link criada e coloque em --connection-id 
+
 aws apigatewayv2 create-integration --api-id glfiulmpwd --integration-type HTTP_PROXY \
     --integration-method GET --connection-type VPC_LINK \
     --connection-id gs9rry \
